@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GeoSecure - Secure File Delivery</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>GeoSecure</h1>
+    <p>Secure Geo-Locked File Delivery System</p>
+</header>
+
+<main>
+
+    <section class="card">
+        <h2>1. Sender Details</h2>
+
+        <label>Sender Email</label>
+        <input type="email" id="sender" placeholder="sender@email.com">
+
+        <label>Receiver Email</label>
+        <input type="email" id="receiver" placeholder="receiver@email.com">
+
+        <label>Select File</label>
+        <input type="file" id="fileInput">
+
+        <label>Enter Geofence Address</label>
+        <input type="text" id="address" placeholder="Enter location">
+
+        <button onclick="searchAddress()">Find Location</button>
+    </section>
+
+
+    <section class="card">
+        <h2>2. Set Geographical Boundary</h2>
+
+        <p>Click on the map to create boundary points.
+        Select at least three points.</p>
+
+        <div id="map"></div>
+
+        <p id="pointCount">Boundary points: 0</p>
+
+        <button onclick="clearBoundary()">Clear Boundary</button>
+    </section>
+
+
+    <section class="card">
+        <h2>3. Encrypt and Send</h2>
+
+        <button onclick="encryptAndSend()">Encrypt File & Send</button>
+
+        <div id="sendResult"></div>
+    </section>
+
+
+    <section class="card">
+        <h2>4. Receiver Verification</h2>
+
+        <label>Enter File ID</label>
+        <input type="text" id="fileId" placeholder="Paste received File ID">
+
+        <label>Enter AES Key</label>
+        <input type="text" id="secretKey" placeholder="Paste AES key">
+
+        <button onclick="verifyLocation()">Verify My Location</button>
+
+        <button onclick="downloadAndDecrypt()">Download & Decrypt</button>
+
+        <div id="receiveResult"></div>
+    </section>
+
+</main>
+
+<footer>
+    GeoSecure | Secure Data Delivery Based on Geographical Information
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
